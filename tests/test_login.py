@@ -2,6 +2,14 @@ import pytest
 from playwright.sync_api import Page, expect
 from pages.login_page import LoginPage
 
+# 测试数据：(用户名, 密码, 期望的错误信息)
+INVALID_LOGIN_DATA = [
+    ("standard_user",  "wrong_password", "Username and password do not match"),
+    ("locked_out_user","secret_sauce",   "Sorry, this user has been locked out"),
+    ("",               "secret_sauce",   "Username is required"),
+    ("standard_user",  "",               "Password is required"),
+]
+
 
 class TestLogin:
 
@@ -26,3 +34,11 @@ class TestLogin:
         login_page.login("locked_out_user", "secret_sauce")
 
         expect(login_page.error_message).to_contain_text("locked out")
+
+    @pytest.mark.parametrize("username, password, expected_error", INVALID_LOGIN_DATA)
+    def test_invalid_login(self, login_page: LoginPage, username, password, expected_error):
+        """各种错误登录场景 → 显示对应错误信息"""
+        login_page.goto()
+        login_page.login(username, password)
+        expect(login_page.error_message).to_be_visible()
+        expect(login_page.error_message).to_contain_text(expected_error)
