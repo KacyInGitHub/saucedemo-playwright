@@ -9,7 +9,7 @@ class InventoryPage:
         self.product_list = page.get_by_test_id("inventory-item")
         self.cart_icon = page.get_by_test_id("shopping-cart-link")
         self.cart_badge = page.locator(".shopping_cart_badge")  # 暂时保留，待确认 HTML
-        self.sort_dropdown = page.get_by_test_id("product-sort-container")
+        self.sort_dropdown = page.locator("[data-test='product-sort-container']")
 
     def get_product_names(self) -> list[str]:
         """获取所有商品名称"""

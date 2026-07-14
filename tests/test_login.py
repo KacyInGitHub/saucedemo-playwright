@@ -3,11 +3,6 @@ from playwright.sync_api import Page, expect
 from pages.login_page import LoginPage
 
 
-@pytest.fixture
-def login_page(page: Page) -> LoginPage:
-    return LoginPage(page)
-
-
 class TestLogin:
 
     def test_login_success(self, login_page: LoginPage):
