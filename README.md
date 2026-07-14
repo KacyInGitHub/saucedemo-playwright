@@ -75,4 +75,4 @@ pytest --html=reports/report.html
 ## Author
 
 Kacy — Senior QA Engineer  
-[GitHub](https://github.com/KacyInGitHub) · [LinkedIn](#)
+[GitHub](https://github.com/KacyInGitHub) · [LinkedIn](https://www.linkedin.com/in/kacyli/)
