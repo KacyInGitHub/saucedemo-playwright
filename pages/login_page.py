@@ -1,8 +1,10 @@
 from playwright.sync_api import Page, Locator
+from pages.base_page import BasePage
 
-class LoginPage:
+
+class LoginPage(BasePage):
     def __init__(self, page: Page):
-        self.page = page
+        super().__init__(page)
         # Locators
         self.username_input: Locator = page.locator("#user-name")
         self.password_input: Locator = page.locator("#password")
@@ -10,8 +12,7 @@ class LoginPage:
         self.error_message: Locator = page.locator('[data-test="error"]')
 
     def goto(self):
-        url = "http://www.saucedemo.com"
-        self.page.goto(url)
+        super().goto("https://www.saucedemo.com")
 
     def login(self, username: str, password: str):
         self.username_input.fill(username)

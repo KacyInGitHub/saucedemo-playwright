@@ -1,10 +1,10 @@
 from playwright.sync_api import Page, Locator
+from pages.base_page import BasePage
 
-class InventoryPage:
+class InventoryPage(BasePage):
 
     def __init__(self, page: Page):
-        self.page = page
-
+        super().__init__(page)
         # 页面元素
         self.product_list = page.get_by_test_id("inventory-item")
         self.cart_icon = page.get_by_test_id("shopping-cart-link")
